@@ -1,12 +1,9 @@
 import { useState } from "react";
+import { Star, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
-import hero1 from "@/assets/hero-1.png";
-import hero2 from "@/assets/hero-2.png";
-import hero3 from "@/assets/hero-3.png";
 
 export default function Hero() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", service: "" });
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent) {
@@ -15,129 +12,164 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative bg-navy text-white pt-24 pb-32 overflow-hidden">
+    <section className="relative bg-navy text-white pt-24 pb-20 overflow-hidden">
       {/* Decorative stars */}
       <div className="absolute top-20 left-10 text-gold/20 animate-pulse">
-        <Star className="w-12 h-12 fill-current" />
+        <Star className="w-10 h-10 fill-current" />
       </div>
-      <div className="absolute bottom-20 left-1/4 text-gold/20 animate-pulse delay-700">
-        <Star className="w-8 h-8 fill-current" />
+      <div className="absolute bottom-16 left-1/3 text-gold/15 animate-pulse delay-700">
+        <Star className="w-7 h-7 fill-current" />
       </div>
-      <div className="absolute top-40 right-20 text-gold/20 animate-pulse delay-1000">
-        <Star className="w-16 h-16 fill-current" />
+      <div className="absolute top-1/2 right-[55%] text-gold/10 animate-pulse delay-1000">
+        <Star className="w-14 h-14 fill-current" />
       </div>
 
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 items-start">
 
-          {/* Left Content */}
-          <div className="space-y-8 relative z-10">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold leading-tight">
-              Control Your Work, Share Your Voice, And Keep <span className="text-gold">100% Of Your Royalties</span> Of Your Story
+          {/* Left — Headline + Trust + CTAs */}
+          <div className="space-y-7 relative z-10 pt-4">
+            <h1 className="text-5xl md:text-6xl lg:text-[3.8rem] xl:text-[4.2rem] font-serif font-bold leading-[1.1]">
+              Control Your Work, Share Your Voice, And Keep{" "}
+              <span className="text-gold">100% Of Your Royalties</span> Of Your Story
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 font-medium">
+            <p className="text-lg text-gray-300 font-medium">
               Fostering Trust On Top Review Platforms
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-              {/* Trust Badges */}
-              <div className="flex bg-white/10 rounded-lg p-3 backdrop-blur-sm border border-white/10">
-                <div className="flex flex-col border-r border-white/20 pr-4">
-                  <span className="text-xs text-gray-300 font-semibold mb-1">Goodreads</span>
-                  <div className="flex items-center gap-1">
-                    <span className="font-bold text-lg">4.9</span>
-                    <Star className="w-4 h-4 fill-gold text-gold" />
+            {/* Trust Badges */}
+            <div className="flex flex-wrap gap-3">
+              <div className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3 border border-white/10">
+                <div className="flex flex-col">
+                  <span className="text-xs text-gray-400 font-semibold">Goodreads</span>
+                  <div className="flex items-center gap-1 mt-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />
+                    ))}
+                    <span className="text-white font-bold text-sm ml-1">4.9</span>
                   </div>
-                  <span className="text-[10px] text-gray-400">700+ reviews</span>
+                  <span className="text-[10px] text-gray-400 mt-0.5">700+ Reviews</span>
                 </div>
-                <div className="flex flex-col pl-4">
-                  <span className="text-xs text-gray-300 font-semibold mb-1">Google</span>
-                  <div className="flex items-center gap-1">
-                    <span className="font-bold text-lg">4.8</span>
-                    <Star className="w-4 h-4 fill-gold text-gold" />
+              </div>
+              <div className="flex items-center gap-3 bg-white/10 rounded-lg px-4 py-3 border border-white/10">
+                <div className="flex flex-col">
+                  <span className="text-xs text-gray-400 font-semibold">Google</span>
+                  <div className="flex items-center gap-1 mt-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-gold text-gold" />
+                    ))}
+                    <span className="text-white font-bold text-sm ml-1">4.8</span>
                   </div>
-                  <span className="text-[10px] text-gray-400">Verified</span>
+                  <span className="text-[10px] text-gray-400 mt-0.5">Verified</span>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-gold hover:bg-gold-hover text-navy font-bold text-lg px-8 h-14 rounded-md">
+              <Button size="lg" className="bg-gold hover:bg-yellow-400 text-navy font-bold text-base px-8 h-13 rounded-md">
                 Get A Free Consultation
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 hover:text-white font-bold text-lg px-8 h-14 rounded-md">
+              <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 hover:text-white font-bold text-base px-8 h-13 rounded-md">
                 View Portfolio
               </Button>
             </div>
+          </div>
 
-            {/* Lead Form */}
-            <div className="bg-white/10 border border-gold/30 backdrop-blur-sm rounded-xl p-6">
-              {submitted ? (
-                <div className="text-center py-4">
-                  <div className="text-gold text-4xl mb-2">&#10003;</div>
-                  <p className="text-white font-semibold text-lg">Thank you! We'll be in touch shortly.</p>
-                </div>
-              ) : (
-                <>
-                  <p className="text-gold font-semibold text-sm uppercase tracking-widest mb-4">Get A Free Quote — No Obligation</p>
-                  <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
-                    <input
-                      type="text"
-                      required
-                      placeholder="Your Name"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      className="flex-1 min-w-0 bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition"
-                    />
-                    <input
-                      type="email"
-                      required
-                      placeholder="Email Address"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      className="flex-1 min-w-0 bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition"
-                    />
-                    <input
-                      type="tel"
-                      placeholder="Phone (optional)"
-                      value={form.phone}
-                      onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                      className="flex-1 min-w-0 bg-white/10 border border-white/20 text-white placeholder-gray-400 rounded-md px-4 py-3 text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition"
-                    />
+          {/* Right — Lead Form Card */}
+          <div className="relative z-10">
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              {/* Form Header */}
+              <div className="bg-gold px-8 py-5">
+                <h2 className="text-navy font-serif font-bold text-2xl">Get A Free Consultation</h2>
+                <p className="text-navy/70 text-sm mt-1">Fill out the form and we'll get back to you within 24 hours</p>
+              </div>
+
+              {/* Form Body */}
+              <div className="px-8 py-7">
+                {submitted ? (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Star className="w-8 h-8 fill-gold text-gold" />
+                    </div>
+                    <h3 className="text-navy font-serif font-bold text-xl mb-2">Thank You!</h3>
+                    <p className="text-gray-500 text-sm">Our expert team will contact you shortly to discuss your project.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                      <label className="block text-navy font-semibold text-sm mb-1.5">Full Name <span className="text-red-500">*</span></label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Enter your full name"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-navy font-semibold text-sm mb-1.5">Email Address <span className="text-red-500">*</span></label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="Enter your email address"
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-navy font-semibold text-sm mb-1.5">Phone Number</label>
+                      <input
+                        type="tel"
+                        placeholder="Enter your phone number"
+                        value={form.phone}
+                        onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-navy font-semibold text-sm mb-1.5">Service Required</label>
+                      <select
+                        value={form.service}
+                        onChange={(e) => setForm({ ...form, service: e.target.value })}
+                        className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm text-gray-800 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition bg-white"
+                      >
+                        <option value="">Select a service</option>
+                        <option value="ghostwriting">Ghostwriting</option>
+                        <option value="editing">Editing &amp; Proofreading</option>
+                        <option value="cover-design">Book Cover Design</option>
+                        <option value="publishing">Publishing Services</option>
+                        <option value="marketing">Book Marketing</option>
+                        <option value="audiobook">Audiobook Production</option>
+                      </select>
+                    </div>
                     <button
                       type="submit"
-                      className="bg-gold hover:bg-yellow-400 text-navy font-bold px-6 py-3 rounded-md text-sm whitespace-nowrap transition-colors"
+                      className="w-full bg-navy hover:bg-navy/90 text-white font-bold py-4 rounded-lg text-base transition-colors mt-2"
                     >
-                      Get Started
+                      Get A Free Consultation
                     </button>
                   </form>
-                </>
-              )}
+                )}
+
+                {/* Contact info strip */}
+                <div className="mt-6 pt-5 border-t border-gray-100 flex flex-col sm:flex-row gap-3 justify-center items-center text-sm text-gray-500">
+                  <span className="flex items-center gap-1.5">
+                    <Phone className="w-4 h-4 text-gold" />
+                    +1 (800) 555-0199
+                  </span>
+                  <span className="hidden sm:block text-gray-200">|</span>
+                  <span className="flex items-center gap-1.5">
+                    <Mail className="w-4 h-4 text-gold" />
+                    info@americanbookfounders.com
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right Content - Book Covers */}
-          <div className="relative h-[600px] hidden lg:block perspective-1000">
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
-
-              {/* Left Book */}
-              <div className="absolute left-0 z-10 w-64 h-96 shadow-2xl transition-transform hover:-translate-y-4 hover:rotate-2 duration-500 rounded-md overflow-hidden transform -rotate-12 -translate-x-12 mt-12 border-4 border-white/10">
-                <img src={hero1} alt="Thriller Book" className="w-full h-full object-cover" />
-              </div>
-
-              {/* Right Book */}
-              <div className="absolute right-0 z-10 w-64 h-96 shadow-2xl transition-transform hover:-translate-y-4 hover:-rotate-2 duration-500 rounded-md overflow-hidden transform rotate-12 translate-x-12 mt-12 border-4 border-white/10">
-                <img src={hero2} alt="Fantasy Book" className="w-full h-full object-cover" />
-              </div>
-
-              {/* Center Book (Top) */}
-              <div className="absolute z-20 w-72 h-[420px] shadow-3xl transition-transform hover:-translate-y-6 duration-500 rounded-md overflow-hidden border-4 border-gold/30 -mt-12">
-                <img src={hero3} alt="Romance Book" className="w-full h-full object-cover" />
-              </div>
-
-            </div>
-          </div>
         </div>
       </div>
     </section>
