@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "American Book Founders"
+version = "1.0.0"
+id = "artifacts/american-book-founders"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18482
+
+[services.development]
+run = "pnpm --filter @workspace/american-book-founders run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/american-book-founders", "run", "build" ]
+publicDir = "artifacts/american-book-founders/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18482"
+BASE_PATH = "/"

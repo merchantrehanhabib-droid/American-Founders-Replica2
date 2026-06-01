@@ -1,0 +1,62 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "3H6P2IEg22sPYZFqI61cX"
+uri = "file://artifacts/american-book-founders/src/assets/hero-1.png"
+type = "image"
+title = "thriller book cover"
+
+[[generated]]
+id = "5qdlN4ETDxeYGXwpyuQW9"
+uri = "file://artifacts/american-book-founders/src/assets/hero-2.png"
+type = "image"
+title = "fantasy book cover"
+
+[[generated]]
+id = "jLcu9Hz3Emm1U3t4lhu5T"
+uri = "file://artifacts/american-book-founders/src/assets/hero-3.png"
+type = "image"
+title = "romance book cover"
+
+[[generated]]
+id = "QPlWfulOrhyTc4QWvTg0j"
+uri = "file://artifacts/american-book-founders/src/assets/beasts.png"
+type = "image"
+title = "attack of beasts cover"
+
+[[generated]]
+id = "-1KP6T855UMPuXnB__8x7"
+uri = "file://artifacts/american-book-founders/src/assets/scifi.png"
+type = "image"
+title = "sci fi book cover"
+
+[[generated]]
+id = "5kjlnGuz4qhFEiwuSeHDd"
+uri = "file://artifacts/american-book-founders/src/assets/literary.png"
+type = "image"
+title = "literary fiction cover"
+
+[[generated]]
+id = "8anqVIjraP4_IaslDRYOU"
+uri = "file://artifacts/american-book-founders/src/assets/phone-mockup.png"
+type = "image"
+title = "phone mockup"
+
+[[generated]]
+id = "n6vz0Buium6XxGC5EgcQv"
+uri = "file://artifacts/american-book-founders/src/assets/writing-desk.png"
+type = "image"
+title = "writing desk"
+
+[[generated]]
+id = "wBZoqZgqj-tk6U_5a4la-"
+uri = "file://artifacts/american-book-founders/src/assets/avatar-1.png"
+type = "image"
+title = "professional avatar 1"
+
+[[generated]]
+id = "iP5IXyIwVHeFsr2DyuSm-"
+uri = "file://artifacts/american-book-founders/src/assets/avatar-2.png"
+type = "image"
+title = "professional avatar 2"
