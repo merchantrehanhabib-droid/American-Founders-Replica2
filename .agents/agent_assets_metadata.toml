@@ -60,3 +60,39 @@ id = "iP5IXyIwVHeFsr2DyuSm-"
 uri = "file://artifacts/american-book-founders/src/assets/avatar-2.png"
 type = "image"
 title = "professional avatar 2"
+
+[[generated]]
+id = "L9ghpP4KST3rw1YLAAAAP"
+uri = "file://attached_assets/generated_images/professional_portrait_of_a_b9d7.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "3fQKq7RxsbRbXDXVXmf2S"
+uri = "file://attached_assets/generated_images/professional_portrait_of_an_503d.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "YKVjyxp6p_xxnB3Wc32vE"
+uri = "file://attached_assets/generated_images/professional_portrait_of_a_295e.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Kr1ZF4X-lyxAxv01uWRs3"
+uri = "file://attached_assets/generated_images/professional_portrait_of_a_0507.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ejoFrGqRKrxINT4sRYx2Y"
+uri = "file://attached_assets/generated_images/professional_portrait_of_a_3a92.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "g5daEOIDt5AZYAxbDIo8I"
+uri = "file://attached_assets/generated_images/professional_portrait_of_an_78b0.png"
+type = "image"
+title = "generated_image"
