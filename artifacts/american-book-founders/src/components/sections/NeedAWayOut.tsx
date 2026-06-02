@@ -3,12 +3,21 @@ import { motion } from "framer-motion";
 
 export default function NeedAWayOut() {
   return (
-    <section className="py-20 bg-gold relative overflow-hidden">
-      {/* Background pattern */}
+    <section
+      className="relative py-20 overflow-hidden"
+      style={{
+        backgroundImage: "url('/bg-cta.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Gold overlay */}
+      <div className="absolute inset-0 bg-gold/90" />
+      {/* Dot pattern */}
       <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '32px 32px' }} />
-      
+
       <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.95, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}

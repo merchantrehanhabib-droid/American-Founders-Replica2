@@ -20,15 +20,20 @@ export default function ThreeSteps() {
   ];
 
   return (
-    <section className="py-24 bg-navy text-white relative overflow-hidden">
-      {/* Decorative large numbers in background */}
-      <div className="absolute top-0 right-0 text-[30rem] font-bold text-white/5 select-none -translate-y-1/4 translate-x-1/4 pointer-events-none">
-        123
-      </div>
+    <section
+      className="relative py-24 text-white overflow-hidden"
+      style={{
+        backgroundImage: "url('/bg-steps.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      {/* Dark navy overlay */}
+      <div className="absolute inset-0 bg-navy/88" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -39,11 +44,10 @@ export default function ThreeSteps() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-12 relative">
-          {/* Connecting line */}
           <div className="hidden md:block absolute top-10 left-[10%] right-[10%] h-0.5 bg-white/20" />
 
           {steps.map((step, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,13 +55,11 @@ export default function ThreeSteps() {
               transition={{ delay: i * 0.2 }}
               className="relative text-center flex flex-col items-center"
             >
-              <div className="w-20 h-20 rounded-full bg-gold text-navy flex items-center justify-center text-3xl font-bold font-serif shadow-[0_0_30px_rgba(245,197,24,0.3)] z-10 mb-8 border-4 border-navy">
+              <div className="w-20 h-20 rounded-full bg-gold text-navy flex items-center justify-center text-3xl font-bold font-serif shadow-[0_0_30px_rgba(245,197,24,0.4)] z-10 mb-8 border-4 border-navy/50">
                 {step.num}
               </div>
               <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-              <p className="text-gray-400 text-lg leading-relaxed">
-                {step.desc}
-              </p>
+              <p className="text-gray-300 text-lg leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
