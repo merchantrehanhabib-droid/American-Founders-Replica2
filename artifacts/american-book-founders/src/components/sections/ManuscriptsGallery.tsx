@@ -53,20 +53,30 @@ function BookRow({ books, reverse = false }: { books: typeof ROW_1; reverse?: bo
 
   return (
     <div className="relative">
-      <button onClick={scrollPrev} className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-navy/80 text-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-navy transition-colors">
+      <button
+        onClick={scrollPrev}
+        className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-navy/80 text-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-navy transition-colors"
+      >
         <ChevronLeft className="w-5 h-5" />
       </button>
-      <button onClick={scrollNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-navy/80 text-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-navy transition-colors">
+      <button
+        onClick={scrollNext}
+        className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-navy/80 text-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-navy transition-colors"
+      >
         <ChevronRight className="w-5 h-5" />
       </button>
 
-      <div className="absolute left-8 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-8 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-8 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-8 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
       <div className="overflow-hidden mx-10" ref={emblaRef}>
-        <div className="flex py-4 gap-0">
+        <div className="flex py-4">
           {books.map((book, i) => (
-            <div key={i} className="flex-[0_0_calc(100%/3)] min-w-0 px-3">
+            <div
+              key={i}
+              /* 1 slide on mobile, 3 on md+ */
+              className="flex-[0_0_100%] md:flex-[0_0_calc(100%/3)] min-w-0 px-3"
+            >
               <div className="group transition-transform duration-300 hover:-translate-y-3 cursor-pointer">
                 <div className="relative shadow-xl rounded-lg overflow-hidden border-2 border-gray-100">
                   <img
