@@ -1,6 +1,6 @@
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import hero1 from "@/assets/hero-1.png";
 import hero2 from "@/assets/hero-2.png";
 import hero3 from "@/assets/hero-3.png";
@@ -8,33 +8,96 @@ import beasts from "@/assets/beasts.png";
 import scifi from "@/assets/scifi.png";
 import literary from "@/assets/literary.png";
 
-export default function ManuscriptsGallery() {
+const ROW_1 = [
+  { img: hero1, title: "The Silent Witness", author: "Eleanor Vance", genre: "Thriller", rating: "4.9" },
+  { img: hero2, title: "Golden Hour", author: "Amelia Rose", genre: "Romance", rating: "4.8" },
+  { img: hero3, title: "The Dragon's Blade", author: "Lara Vance", genre: "Fantasy", rating: "4.9" },
+  { img: beasts, title: "The Sundered Dawn", author: "Ava Reid", genre: "Horror", rating: "4.7" },
+  { img: scifi, title: "Rising Sun", author: "Kaizen Moore", genre: "Sci-Fi", rating: "4.8" },
+  { img: literary, title: "The Final Act", author: "Elara Stone", genre: "Literary", rating: "4.9" },
+  { img: "/genre-thriller-1.png", title: "Shadow Protocol", author: "J.R. Black", genre: "Thriller", rating: "4.8" },
+  { img: "/genre-horror-1.png", title: "Nightfall Manor", author: "D. Thorne", genre: "Horror", rating: "4.7" },
+  { img: "/genre-fantasy-1.png", title: "Crown of Embers", author: "M.K. Davis", genre: "Fantasy", rating: "4.9" },
+];
+
+const ROW_2 = [
+  { img: "/genre-romance-1.png", title: "Midnight in Manhattan", author: "Clara Bell", genre: "Romance", rating: "4.8" },
+  { img: "/genre-western-1.png", title: "Dust & Thunder", author: "Tom Rider", genre: "Western", rating: "4.7" },
+  { img: "/genre-truecrime-1.png", title: "The Evidence Board", author: "Sara Hill", genre: "True Crime", rating: "4.8" },
+  { img: "/genre-memoir-1.png", title: "Sunrise Over America", author: "L. Foster", genre: "Memoir", rating: "4.9" },
+  { img: "/genre-scifi-1.png", title: "Beyond the Rings", author: "A. Turing", genre: "Sci-Fi", rating: "4.8" },
+  { img: "/genre-fantasy-2.png", title: "Storm Caller", author: "Y. Tanaka", genre: "Fantasy", rating: "4.7" },
+  { img: "/genre-horror-2.png", title: "The Last Grave", author: "C. Rivera", genre: "Horror", rating: "4.8" },
+  { img: hero1, title: "Dead Reckoning", author: "P. Stone", genre: "Thriller", rating: "4.9" },
+  { img: hero3, title: "Ember & Ash", author: "W. James", genre: "Fantasy", rating: "4.8" },
+];
+
+function BookRow({ books, reverse = false }: { books: typeof ROW_1; reverse?: boolean }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "start",
-    slidesToScroll: 1,
-    dragFree: false,
+    dragFree: true,
   });
 
-  const books = [
-    { img: hero1, title: "Deadly Secrets", author: "J.R. Black" },
-    { img: hero2, title: "The Host", author: "Sarah Connor" },
-    { img: hero3, title: "Harlan's Promise", author: "M.K. Davis" },
-    { img: beasts, title: "The Sundered Dawn", author: "Ava Reid" },
-    { img: scifi, title: "Rising Sun", author: "Kaizen Moore" },
-    { img: literary, title: "The Final Act", author: "Elara Stone" },
-  ];
-
-  // Auto-scroll
   useEffect(() => {
     if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 3500);
+    const interval = setInterval(
+      () => (reverse ? emblaApi.scrollPrev() : emblaApi.scrollNext()),
+      2800
+    );
     return () => clearInterval(interval);
-  }, [emblaApi]);
+  }, [emblaApi, reverse]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
 
+  return (
+    <div className="relative">
+      <button onClick={scrollPrev} className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-navy/80 text-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-navy transition-colors">
+        <ChevronLeft className="w-5 h-5" />
+      </button>
+      <button onClick={scrollNext} className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-navy/80 text-white flex items-center justify-center shadow-lg hover:bg-gold hover:text-navy transition-colors">
+        <ChevronRight className="w-5 h-5" />
+      </button>
+
+      <div className="absolute left-8 top-0 bottom-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-8 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+      <div className="overflow-hidden mx-10" ref={emblaRef}>
+        <div className="flex py-4 gap-0">
+          {books.map((book, i) => (
+            <div key={i} className="flex-[0_0_calc(100%/3)] min-w-0 px-3">
+              <div className="group transition-transform duration-300 hover:-translate-y-3 cursor-pointer">
+                <div className="relative shadow-xl rounded-lg overflow-hidden border-2 border-gray-100">
+                  <img
+                    src={book.img}
+                    alt={book.title}
+                    className="w-full h-[300px] object-cover"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="bg-gold text-navy text-[10px] font-bold uppercase px-2 py-0.5 rounded-sm tracking-wide">
+                      {book.genre}
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+                    <Star className="w-3 h-3 fill-gold text-gold" />
+                    <span className="font-bold">{book.rating}</span>
+                  </div>
+                </div>
+                <div className="mt-3 text-center">
+                  <h3 className="font-serif font-bold text-base text-navy leading-tight">{book.title}</h3>
+                  <p className="text-gray-500 text-sm mt-0.5">By {book.author}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ManuscriptsGallery() {
   return (
     <section
       className="relative py-24 overflow-hidden"
@@ -44,61 +107,22 @@ export default function ManuscriptsGallery() {
         backgroundPosition: "center",
       }}
     >
-      {/* Light overlay so cards pop */}
-      <div className="absolute inset-0 bg-white/92" />
+      <div className="absolute inset-0 bg-white/93" />
 
       <div className="relative z-10">
         <div className="container mx-auto px-4 md:px-6 mb-14 text-center">
+          <span className="inline-block text-gold text-sm font-bold uppercase tracking-widest mb-3">Our Portfolio</span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-navy max-w-4xl mx-auto leading-tight">
             Discover The Many Manuscripts From Thriving Publishing Authors
           </h2>
+          <p className="text-gray-500 mt-4 text-lg max-w-2xl mx-auto">
+            Hundreds of books published across every genre — each one a real story, a real author, a real American dream fulfilled.
+          </p>
         </div>
 
-        <div className="relative px-4 md:px-14">
-          {/* Prev button */}
-          <button
-            onClick={scrollPrev}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center shadow-xl hover:bg-gold hover:text-navy transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-
-          {/* Next button */}
-          <button
-            onClick={scrollNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-navy text-white flex items-center justify-center shadow-xl hover:bg-gold hover:text-navy transition-colors"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Gradient fades */}
-          <div className="absolute left-14 top-0 bottom-0 w-16 bg-gradient-to-r from-white/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-14 top-0 bottom-0 w-16 bg-gradient-to-l from-white/80 to-transparent z-10 pointer-events-none" />
-
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex py-8">
-              {books.map((book, i) => (
-                <div
-                  key={i}
-                  className="flex-[0_0_33.333%] min-w-0 px-4"
-                >
-                  <div className="transition-transform duration-300 hover:-translate-y-4 cursor-pointer">
-                    <div className="shadow-[0_10px_40px_-10px_rgba(0,0,0,0.25)] rounded-md overflow-hidden border-4 border-gray-100">
-                      <img
-                        src={book.img}
-                        alt={book.title}
-                        className="w-full h-[380px] object-cover"
-                      />
-                    </div>
-                    <div className="mt-5 text-center">
-                      <h3 className="font-serif font-bold text-xl text-navy">{book.title}</h3>
-                      <p className="text-gray-500 font-medium mt-1">By {book.author}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="space-y-8 px-4 md:px-6">
+          <BookRow books={ROW_1} />
+          <BookRow books={ROW_2} reverse />
         </div>
       </div>
     </section>

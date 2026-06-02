@@ -7,9 +7,9 @@ import YellowBanner from "@/components/sections/YellowBanner";
 import PremiumProduction from "@/components/sections/PremiumProduction";
 import ThreeSteps from "@/components/sections/ThreeSteps";
 import ManuscriptsGallery from "@/components/sections/ManuscriptsGallery";
+import GenreSection from "@/components/sections/GenreSection";
 import NeedAWayOut from "@/components/sections/NeedAWayOut";
 import Process from "@/components/sections/Process";
-import AchievableQualities from "@/components/sections/AchievableQualities";
 import WorkWithYou from "@/components/sections/WorkWithYou";
 import Testimonials from "@/components/sections/Testimonials";
 import StatsBar from "@/components/sections/StatsBar";
@@ -27,9 +27,9 @@ export default function Home() {
       <PremiumProduction />
       <ThreeSteps />
       <ManuscriptsGallery />
+      <GenreSection />
       <NeedAWayOut />
       <Process />
-      <AchievableQualities />
       <WorkWithYou />
       <Testimonials />
       <StatsBar />
