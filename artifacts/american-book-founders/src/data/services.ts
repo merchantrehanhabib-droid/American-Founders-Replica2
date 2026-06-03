@@ -309,6 +309,121 @@ export const SERVICES: ServiceData[] = [
       { step: "Distribution", desc: "Published on all major audio platforms." },
     ],
   },
+  {
+    slug: "isbn-copyright",
+    title: "ISBN & Copyright",
+    tagline: "Protect your work and publish with authority.",
+    category: "Publishing",
+    img: "/genre-truecrime-1.png",
+    description:
+      "Every published book needs an ISBN and copyright protection. We handle the registration process for you — securing your intellectual property and giving your book the professional credentials it needs to sell on every platform.",
+    benefits: [
+      "Official ISBN registration via Bowker",
+      "U.S. Copyright Office registration",
+      "Barcode generation for print books",
+      "Library of Congress Control Number (LCCN)",
+      "Full ownership remains with you",
+    ],
+    process: [
+      { step: "Author Info Collection", desc: "We gather your details for registration." },
+      { step: "ISBN Purchase", desc: "ISBN registered in your name via Bowker." },
+      { step: "Copyright Filing", desc: "U.S. Copyright Office application submitted." },
+      { step: "Barcode Generation", desc: "Print-ready barcode created for your cover." },
+      { step: "Certificate Delivery", desc: "All certificates and credentials sent to you." },
+    ],
+  },
+  {
+    slug: "print-on-demand",
+    title: "Print-on-Demand",
+    tagline: "Sell physical books with zero inventory.",
+    category: "Publishing",
+    img: "/genre-western-1.png",
+    description:
+      "With print-on-demand publishing, your book is printed and shipped only when someone orders it — no warehousing, no upfront costs, no risk. We set up your POD listing on Amazon KDP and IngramSpark so you earn royalties on every copy sold.",
+    benefits: [
+      "Zero upfront printing costs",
+      "Available on Amazon and 40,000+ retailers",
+      "Multiple trim sizes and paper options",
+      "Hardcover and paperback formats",
+      "Royalties paid directly to you",
+    ],
+    process: [
+      { step: "File Preparation", desc: "Interior and cover files formatted to POD specs." },
+      { step: "Platform Setup", desc: "KDP and IngramSpark accounts configured." },
+      { step: "Proof Order", desc: "Physical proof copy ordered for your review." },
+      { step: "Approval", desc: "You approve the proof before going live." },
+      { step: "Distribution", desc: "Book made available across global retailers." },
+    ],
+  },
+  {
+    slug: "author-website",
+    title: "Author Website",
+    tagline: "Your professional home on the internet.",
+    category: "Book Marketing",
+    img: "/genre-fantasy-2.png",
+    description:
+      "Every serious author needs a professional website. We design and build a stunning author site that showcases your books, bio, blog, and contact form — optimized for SEO so readers can find you on Google.",
+    benefits: [
+      "Custom design that matches your brand",
+      "Mobile-responsive and fast-loading",
+      "SEO-optimized from day one",
+      "Book showcase with buy links",
+      "Blog, contact form, and newsletter signup",
+    ],
+    process: [
+      { step: "Discovery", desc: "We learn your brand, genre, and audience." },
+      { step: "Design Mockup", desc: "Custom design presented for your approval." },
+      { step: "Development", desc: "Fully coded, tested website built." },
+      { step: "Content Setup", desc: "Your bio, books, and photos added." },
+      { step: "Launch", desc: "Site goes live with your domain." },
+    ],
+  },
+  {
+    slug: "social-media-marketing",
+    title: "Social Media Marketing",
+    tagline: "Build your author brand where readers live.",
+    category: "Book Marketing",
+    img: "/genre-romance-1.png",
+    description:
+      "We manage your author presence on Facebook, Instagram, TikTok (BookTok), and X — creating scroll-stopping content that builds your following, drives book sales, and turns readers into fans.",
+    benefits: [
+      "Content creation across all major platforms",
+      "BookTok and Instagram Reels strategy",
+      "Targeted paid ad campaigns",
+      "Community engagement and replies",
+      "Monthly analytics and reporting",
+    ],
+    process: [
+      { step: "Audit", desc: "Review of your current social presence." },
+      { step: "Strategy", desc: "Custom content calendar built for your genre." },
+      { step: "Content Creation", desc: "Graphics, captions, and video clips produced." },
+      { step: "Publishing & Scheduling", desc: "Posts scheduled and published for you." },
+      { step: "Reporting", desc: "Monthly performance report with growth metrics." },
+    ],
+  },
+  {
+    slug: "book-trailer",
+    title: "Book Trailer",
+    tagline: "A cinematic preview that sells your book.",
+    category: "Book Marketing",
+    img: "/genre-horror-2.png",
+    description:
+      "Book trailers are one of the most powerful marketing tools an author can have. We produce professional, cinematic book trailers that capture the mood of your story and drive readers to buy — perfect for social media, your website, and Amazon.",
+    benefits: [
+      "Professional scriptwriting and storyboarding",
+      "Cinematic visuals and licensed music",
+      "60–90 second optimized length",
+      "Formatted for YouTube, Instagram, and TikTok",
+      "Full rights — use it anywhere forever",
+    ],
+    process: [
+      { step: "Brief", desc: "We learn your book's tone, genre, and key hooks." },
+      { step: "Script & Storyboard", desc: "A detailed shot-by-shot plan presented to you." },
+      { step: "Production", desc: "Video produced with visuals, voiceover, and music." },
+      { step: "Revisions", desc: "Two rounds of edits until you love it." },
+      { step: "Delivery", desc: "Final video in all required formats." },
+    ],
+  },
 ];
 
 export function getService(slug: string): ServiceData | undefined {
