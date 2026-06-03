@@ -1,6 +1,7 @@
 import AnnouncementBar from "@/components/sections/AnnouncementBar";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
+import FloatingCTA from "@/components/ui/FloatingCTA";
 import { useEffect } from "react";
 
 interface Props {
@@ -22,6 +23,7 @@ export default function PageLayout({ children, title, description }: Props) {
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }

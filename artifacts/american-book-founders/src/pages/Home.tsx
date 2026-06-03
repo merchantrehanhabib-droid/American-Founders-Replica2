@@ -15,6 +15,7 @@ import Testimonials from "@/components/sections/Testimonials";
 import StatsBar from "@/components/sections/StatsBar";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
+import FloatingCTA from "@/components/ui/FloatingCTA";
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
       <StatsBar />
       <ContactSection />
       <Footer />
+      <FloatingCTA />
     </main>
   );
 }
