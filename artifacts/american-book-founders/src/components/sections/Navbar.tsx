@@ -20,6 +20,7 @@ const NAV: NavItem[] = [
           { label: "Why Choose Us", href: "/about/why-choose-us" },
           { label: "Testimonials", href: "/testimonials" },
           { label: "Awards & Recognition", href: "/about/awards" },
+          { label: "Contact Us", href: "/contact" },
         ],
       },
     ],
