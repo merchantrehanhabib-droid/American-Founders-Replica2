@@ -16,6 +16,7 @@ import StatsBar from "@/components/sections/StatsBar";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/sections/Footer";
 import FloatingCTA from "@/components/ui/FloatingCTA";
+import ChatPopup from "@/components/ui/ChatPopup";
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
       <ContactSection />
       <Footer />
       <FloatingCTA />
+      <ChatPopup />
     </main>
   );
 }

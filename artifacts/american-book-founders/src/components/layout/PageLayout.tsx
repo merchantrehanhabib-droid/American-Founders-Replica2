@@ -2,6 +2,7 @@ import AnnouncementBar from "@/components/sections/AnnouncementBar";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import FloatingCTA from "@/components/ui/FloatingCTA";
+import ChatPopup from "@/components/ui/ChatPopup";
 import { useEffect } from "react";
 
 interface Props {
@@ -24,6 +25,7 @@ export default function PageLayout({ children, title, description }: Props) {
       <main className="flex-1">{children}</main>
       <Footer />
       <FloatingCTA />
+      <ChatPopup />
     </div>
   );
 }
