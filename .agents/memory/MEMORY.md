@@ -1,0 +1,2 @@
+- [Admin dashboard auth](admin-auth.md) — JWT auth via SESSION_SECRET; first admin seeded via POST /api/admin/seed with secret; one-time only.
+- [Lead & chat persistence](lead-chat-api.md) — All forms POST to /api/leads; chat popup POSTs to /api/chat-messages; admin reads both at /admin.

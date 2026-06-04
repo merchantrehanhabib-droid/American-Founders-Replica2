@@ -15,8 +15,15 @@ export default function FloatingCTA() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    try {
+      await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: form.name, phone: form.phone, message: form.message, source: "floating-cta" }),
+      });
+    } catch (_) { /* silent */ }
     setSubmitted(true);
   }
 

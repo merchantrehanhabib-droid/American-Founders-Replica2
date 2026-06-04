@@ -21,6 +21,18 @@ const QUICK_REPLIES = [
   "I want to self-publish",
 ];
 
+const SESSION_ID = `chat-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+async function saveMessage(from: "agent" | "user", text: string) {
+  try {
+    await fetch("/api/chat-messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ sessionId: SESSION_ID, from, text }),
+    });
+  } catch (_) { /* silent */ }
+}
+
 export default function ChatPopup() {
   const [show, setShow] = useState(false);
   const [open, setOpen] = useState(false);
@@ -38,6 +50,7 @@ export default function ChatPopup() {
       setShow(true);
       setMessages(INITIAL_MESSAGES);
       setUnread(INITIAL_MESSAGES.length);
+      INITIAL_MESSAGES.forEach((m) => saveMessage(m.from, m.text));
     }, 30_000);
     return () => clearTimeout(timer);
   }, []);
@@ -69,6 +82,7 @@ export default function ChatPopup() {
       else if (t.includes("self") || t.includes("publish"))
         reply = "Self-publishing is our specialty! We handle Amazon KDP, IngramSpark, distribution, and you keep 100% of your royalties. Want to learn more? 📚";
       setMessages((prev) => [...prev, { from: "agent", text: reply }]);
+      saveMessage("agent", reply);
     }, 1400);
   }
 
@@ -76,6 +90,7 @@ export default function ChatPopup() {
     if (!text.trim()) return;
     setMessages((prev) => [...prev, { from: "user", text }]);
     setInput("");
+    saveMessage("user", text);
     agentReply(text);
   }
 
