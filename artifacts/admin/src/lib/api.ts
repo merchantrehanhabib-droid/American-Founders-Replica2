@@ -1,6 +1,6 @@
 const BASE = "/api";
 
-function authHeaders() {
+function authHeaders(): Record<string, string> {
   const token = localStorage.getItem("admin_token");
   return token ? { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } : { "Content-Type": "application/json" };
 }

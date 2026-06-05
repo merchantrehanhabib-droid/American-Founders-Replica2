@@ -41,7 +41,7 @@ router.get("/chat-messages/sessions", requireAuth, async (_req, res) => {
 
 /* DELETE /api/chat-messages/sessions/:sessionId — admin only */
 router.delete("/chat-messages/sessions/:sessionId", requireAuth, async (req, res) => {
-  await db.delete(chatMessagesTable).where(eq(chatMessagesTable.sessionId, req.params.sessionId));
+  await db.delete(chatMessagesTable).where(eq(chatMessagesTable.sessionId, req.params.sessionId as string));
   res.json({ ok: true });
 });
 

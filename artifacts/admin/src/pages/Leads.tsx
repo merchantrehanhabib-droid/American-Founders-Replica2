@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Trash2, RefreshCw, Phone, Mail, MessageSquare, Search } from "lucide-react";
+import { Trash2, RefreshCw, Phone, Mail, MessageSquare, Search, Users } from "lucide-react";
 import { api, type Lead } from "@/lib/api";
 
 const STATUS_OPTIONS = ["new", "contacted", "qualified", "closed"];

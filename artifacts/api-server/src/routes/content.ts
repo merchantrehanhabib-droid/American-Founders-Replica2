@@ -6,7 +6,7 @@ import { requireAuth } from "../middleware/auth";
 const router = Router();
 
 router.get("/content/:key", async (req, res) => {
-  const { key } = req.params;
+  const key = req.params.key as string;
   try {
     const [row] = await db.select().from(siteContentTable).where(eq(siteContentTable.key, key));
     if (!row) { res.status(404).json({ error: "Not found" }); return; }
@@ -22,7 +22,7 @@ router.get("/content", requireAuth, async (_req, res) => {
 });
 
 router.put("/content/:key", requireAuth, async (req, res) => {
-  const { key } = req.params;
+  const key = req.params.key as string;
   const { value } = req.body as { value: unknown };
   if (value === undefined) { res.status(400).json({ error: "value required" }); return; }
   try {
