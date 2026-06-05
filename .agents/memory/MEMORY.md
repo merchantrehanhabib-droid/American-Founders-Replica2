@@ -1,2 +1,4 @@
 - [Admin dashboard auth](admin-auth.md) — JWT auth via SESSION_SECRET; first admin seeded via POST /api/admin/seed with secret; one-time only.
 - [Lead & chat persistence](lead-chat-api.md) — All forms POST to /api/leads; chat popup POSTs to /api/chat-messages; admin reads both at /admin.
+- [Content CMS system](content-cms.md) — site_content table (key/JSONB) powers editable content; keys: hero, stats, testimonials, blog; website falls back to hardcoded defaults when key missing.
+- [Workflow port config](workflow-ports.md) — Website port 18482 BASE_PATH=/; Admin port 23744 BASE_PATH=/admin/; API port 8080. American-book-founders vite.config had hardcoded port 3000 (now fixed to read PORT env).

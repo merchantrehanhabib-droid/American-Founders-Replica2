@@ -6,6 +6,7 @@ import Dashboard from "@/pages/Dashboard";
 import Leads from "@/pages/Leads";
 import ChatMessages from "@/pages/ChatMessages";
 import Settings from "@/pages/Settings";
+import Content from "@/pages/Content";
 import Sidebar from "@/components/Sidebar";
 
 function AdminLayout({ onLogout }: { onLogout: () => void }) {
@@ -17,6 +18,7 @@ function AdminLayout({ onLogout }: { onLogout: () => void }) {
           <Route path="/" component={Dashboard} />
           <Route path="/leads" component={Leads} />
           <Route path="/chat" component={ChatMessages} />
+          <Route path="/content" component={Content} />
           <Route path="/settings" component={Settings} />
           <Route>
             <div className="p-8 text-center text-gray-400">Page not found</div>

@@ -1,8 +1,19 @@
+import { useEffect, useState } from "react";
 import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import { ArrowRight, Calendar, User } from "lucide-react";
 
-const POSTS = [
+type BlogPost = {
+  img: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  readTime: string;
+};
+
+const DEFAULT_POSTS: BlogPost[] = [
   {
     img: "/genre-memoir-1.png",
     category: "Ghostwriting",
@@ -60,6 +71,17 @@ const POSTS = [
 ];
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<BlogPost[]>(DEFAULT_POSTS);
+
+  useEffect(() => {
+    fetch("/api/content/blog")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (Array.isArray(data?.value)) setPosts(data.value as BlogPost[]); })
+      .catch(() => {});
+  }, []);
+
+  if (posts.length === 0) return null;
+
   return (
     <PageLayout
       title="Blog"
@@ -85,8 +107,8 @@ export default function BlogPage() {
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src={POSTS[0].img}
-                alt={POSTS[0].title}
+                src={posts[0].img}
+                alt={posts[0].title}
                 loading="eager"
                 decoding="async"
                 width={700}
@@ -96,13 +118,13 @@ export default function BlogPage() {
               <span className="absolute top-4 left-4 bg-gold text-navy text-xs font-bold uppercase px-3 py-1 rounded">Featured</span>
             </div>
             <div>
-              <span className="text-gold font-bold text-sm uppercase tracking-widest">{POSTS[0].category}</span>
-              <h2 className="text-3xl font-serif font-bold text-navy mt-2 mb-4 leading-tight">{POSTS[0].title}</h2>
-              <p className="text-gray-500 leading-relaxed mb-6">{POSTS[0].excerpt}</p>
+              <span className="text-gold font-bold text-sm uppercase tracking-widest">{posts[0].category}</span>
+              <h2 className="text-3xl font-serif font-bold text-navy mt-2 mb-4 leading-tight">{posts[0].title}</h2>
+              <p className="text-gray-500 leading-relaxed mb-6">{posts[0].excerpt}</p>
               <div className="flex items-center gap-4 text-sm text-gray-400 mb-6">
-                <span className="flex items-center gap-1.5"><User className="w-4 h-4" />{POSTS[0].author}</span>
-                <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{POSTS[0].date}</span>
-                <span>{POSTS[0].readTime}</span>
+                <span className="flex items-center gap-1.5"><User className="w-4 h-4" />{posts[0].author}</span>
+                <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{posts[0].date}</span>
+                <span>{posts[0].readTime}</span>
               </div>
               <button className="inline-flex items-center gap-2 text-navy font-bold hover:text-gold transition-colors">
                 Read Full Article <ArrowRight className="w-4 h-4" />
@@ -117,7 +139,7 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 md:px-6">
           <h2 className="text-2xl font-serif font-bold text-navy mb-10">Latest Articles</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {POSTS.slice(1).map((post, i) => (
+            {posts.slice(1).map((post, i) => (
               <motion.article key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="group bg-white rounded-xl overflow-hidden shadow hover:shadow-xl transition-shadow cursor-pointer">
                 <div className="relative h-48 overflow-hidden">
                   <img

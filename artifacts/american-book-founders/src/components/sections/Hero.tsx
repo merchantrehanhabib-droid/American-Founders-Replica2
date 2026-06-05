@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star, Phone, Send, Tag } from "lucide-react";
 
 function AnimatedFlag({ size = "sm" }: { size?: "sm" | "lg" }) {
@@ -41,15 +41,34 @@ function AnimatedFlag({ size = "sm" }: { size?: "sm" | "lg" }) {
   );
 }
 
-const bullets = [
-  "Not able to write a great manuscript?",
-  "Are you frustrated with waiting for approvals?",
-  "As a publisher, do you know what to do next?",
-];
+const DEFAULT_HERO = {
+  eyebrow: "Become A Self-Published Author:",
+  headline: "Control Your Work, Share Your Voice, And Keep 100% Of Your Royalties",
+  subText:
+    'Americanbookfounders team of experts will work very hard on your book, help you get it published, and make you a "stunning author." Join hands with the authentic and powerful team of creative book writers!',
+  bullets: [
+    "Not able to write a great manuscript?",
+    "Are you frustrated with waiting for approvals?",
+    "As a publisher, do you know what to do next?",
+  ],
+  phone: "+1 (800) 555-0199",
+  ratingText: "Rated 9.1 out of 10",
+  ratingCount: "3428",
+};
+
+type HeroData = typeof DEFAULT_HERO;
 
 export default function Hero() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [hero, setHero] = useState<HeroData>(DEFAULT_HERO);
+
+  useEffect(() => {
+    fetch("/api/content/hero")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (data?.value) setHero(data.value as HeroData); })
+      .catch(() => {});
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -82,25 +101,22 @@ export default function Hero() {
 
             {/* Eyebrow */}
             <p className="text-gold font-semibold text-base md:text-lg tracking-wide">
-              Become A Self-Published Author:
+              {hero.eyebrow}
             </p>
 
             {/* Headline */}
             <h1 className="text-4xl sm:text-5xl md:text-[3.4rem] xl:text-[3.8rem] font-serif font-bold leading-[1.12] text-white">
-              Control Your Work, Share Your Voice, And Keep{" "}
-              <span className="text-gold">100% Of Your Royalties</span>
+              {hero.headline}
             </h1>
 
             {/* Sub-copy */}
             <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-xl">
-              Americanbookfounders team of experts will work very hard on your book, help you
-              get it published, and make you a "stunning author." Join hands with the authentic
-              and powerful team of creative book writers!
+              {hero.subText}
             </p>
 
             {/* Bullet pain points */}
             <ul className="space-y-2.5">
-              {bullets.map((b, i) => (
+              {hero.bullets.map((b, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-200 text-sm md:text-base">
                   <span className="w-2 h-2 rounded-full bg-gold flex-shrink-0" />
                   {b}
@@ -111,11 +127,11 @@ export default function Hero() {
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
-                href="tel:+18005550199"
+                href={`tel:${hero.phone.replace(/\s/g, "")}`}
                 className="inline-flex items-center justify-center gap-2 bg-navy border-2 border-gold text-white font-bold text-sm px-7 py-4 rounded-md hover:bg-gold hover:text-navy transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                +1 (800) 555-0199
+                {hero.phone}
               </a>
               <button className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-400 text-navy font-bold text-sm px-7 py-4 rounded-md transition-colors">
                 <Tag className="w-4 h-4" />
@@ -125,13 +141,13 @@ export default function Hero() {
 
             {/* Rating bar */}
             <div className="flex items-center gap-2 pt-2">
-              <span className="text-gray-400 text-sm">Rated 9.1 out of 10</span>
+              <span className="text-gray-400 text-sm">{hero.ratingText}</span>
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-gold text-gold" />
                 ))}
               </div>
-              <span className="text-gray-400 text-sm">based on 3428 satisfied customers.</span>
+              <span className="text-gray-400 text-sm">based on {hero.ratingCount} satisfied customers.</span>
             </div>
           </div>
 

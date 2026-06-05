@@ -1,19 +1,31 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
+const DEFAULT_STATS = [
+  { number: "500+", label: "Books Published" },
+  { number: "98%", label: "Client Satisfaction" },
+  { number: "50+", label: "Expert Writers" },
+  { number: "10+", label: "Years Experience" },
+];
+
+type StatItem = { number: string; label: string };
+
 export default function StatsBar() {
-  const stats = [
-    { number: "500+", label: "Books Published" },
-    { number: "98%", label: "Client Satisfaction" },
-    { number: "50+", label: "Expert Writers" },
-    { number: "10+", label: "Years Experience" }
-  ];
+  const [stats, setStats] = useState<StatItem[]>(DEFAULT_STATS);
+
+  useEffect(() => {
+    fetch("/api/content/stats")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (Array.isArray(data?.value)) setStats(data.value as StatItem[]); })
+      .catch(() => {});
+  }, []);
 
   return (
     <section className="bg-navy border-y border-white/10 py-16">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x-0 md:divide-x divide-white/10">
           {stats.map((stat, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

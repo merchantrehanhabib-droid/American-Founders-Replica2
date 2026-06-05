@@ -1,11 +1,12 @@
 import { Link, useLocation } from "wouter";
-import { LayoutDashboard, Users, MessageSquare, Settings, LogOut, BookOpen } from "lucide-react";
+import { LayoutDashboard, Users, MessageSquare, Settings, LogOut, BookOpen, FileEdit } from "lucide-react";
 import { clearToken } from "@/lib/auth";
 
 const NAV = [
   { href: "/", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/leads", icon: Users, label: "Leads" },
   { href: "/chat", icon: MessageSquare, label: "Chat Messages" },
+  { href: "/content", icon: FileEdit, label: "Content Editor" },
   { href: "/settings", icon: Settings, label: "Settings" },
 ];
 

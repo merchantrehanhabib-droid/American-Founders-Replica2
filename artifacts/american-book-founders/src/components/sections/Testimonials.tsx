@@ -1,21 +1,25 @@
+import { useEffect, useState } from "react";
 import { Star, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 
-const testimonials = [
+const DEFAULT_TESTIMONIALS = [
   {
-    quote: "Working with American Book Founders was a transformative experience. They brought my story to life with an elegance I couldn't have imagined on my own.",
+    quote:
+      "Working with American Book Founders was a transformative experience. They brought my story to life with an elegance I couldn't have imagined on my own.",
     name: "Sarah Johnson",
     title: "First-time Author",
     avatar: "/author-2.png",
   },
   {
-    quote: "The ghostwriting team was incredibly professional and captured my voice perfectly. My business book hit the bestseller list within weeks of launch.",
+    quote:
+      "The ghostwriting team was incredibly professional and captured my voice perfectly. My business book hit the bestseller list within weeks of launch.",
     name: "Michael Rodriguez",
     title: "Business Author",
     avatar: "/author-3.png",
   },
   {
-    quote: "From concept to publication, every step was seamless. Highly recommend their comprehensive publishing services to any aspiring author.",
+    quote:
+      "From concept to publication, every step was seamless. Highly recommend their comprehensive publishing services to any aspiring author.",
     name: "Jennifer Lee",
     title: "Memoir Writer",
     avatar: "/author-4.png",
@@ -31,7 +35,18 @@ const authors = [
   { name: "Yuki Tanaka", genre: "Literary Fiction", img: "/author-6.png" },
 ];
 
+type TestimonialItem = { quote: string; name: string; title: string; avatar: string };
+
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<TestimonialItem[]>(DEFAULT_TESTIMONIALS);
+
+  useEffect(() => {
+    fetch("/api/content/testimonials")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (Array.isArray(data?.value)) setTestimonials(data.value as TestimonialItem[]); })
+      .catch(() => {});
+  }, []);
+
   return (
     <>
       {/* Authors Grid */}

@@ -28,6 +28,11 @@ export const api = {
   getChatSessions: () => request<ChatSession[]>("/chat-messages/sessions"),
   deleteChatSession: (sessionId: string) =>
     request(`/chat-messages/sessions/${sessionId}`, { method: "DELETE" }),
+
+  getContent: (key: string) =>
+    request<{ key: string; value: unknown }>(`/content/${key}`).catch(() => null),
+  saveContent: (key: string, value: unknown) =>
+    request<{ ok: boolean }>(`/content/${key}`, { method: "PUT", body: JSON.stringify({ value }) }),
 };
 
 export interface Lead {

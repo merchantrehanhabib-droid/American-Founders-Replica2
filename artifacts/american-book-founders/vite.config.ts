@@ -2,13 +2,31 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
-// Humne yahan PORT aur BASE_PATH ka check hata diya hai
+const rawPort = process.env.PORT;
+const port = rawPort ? Number(rawPort) : 18482;
+const basePath = process.env.BASE_PATH ?? "/";
+
 export default defineConfig({
-  base: "/", // Vercel ke liye base path "/" hona chahiye
+  base: basePath,
   plugins: [
     react(),
     tailwindcss(),
+    runtimeErrorOverlay(),
+    ...(process.env.NODE_ENV !== "production" &&
+    process.env.REPL_ID !== undefined
+      ? [
+          await import("@replit/vite-plugin-cartographer").then((m) =>
+            m.cartographer({
+              root: path.resolve(import.meta.dirname, ".."),
+            }),
+          ),
+          await import("@replit/vite-plugin-dev-banner").then((m) =>
+            m.devBanner(),
+          ),
+        ]
+      : []),
   ],
   resolve: {
     alias: {
@@ -19,11 +37,21 @@ export default defineConfig({
   },
   root: path.resolve(import.meta.dirname),
   build: {
-    outDir: "dist", // Isay simple "dist" kar diya hai
+    outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
   },
   server: {
-    port: 3000,
+    port,
+    strictPort: true,
     host: "0.0.0.0",
+    allowedHosts: true,
+    fs: {
+      strict: true,
+    },
+  },
+  preview: {
+    port,
+    host: "0.0.0.0",
+    allowedHosts: true,
   },
 });
