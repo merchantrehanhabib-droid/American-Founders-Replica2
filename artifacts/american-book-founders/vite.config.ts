@@ -4,17 +4,14 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "src"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
-    outDir: "dist/public", // Yeh folder Vercel ko batana hai
+    outDir: "dist", // Vite yahan files generate karega
     emptyOutDir: true,
   },
 });
