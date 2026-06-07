@@ -12,8 +12,16 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  css: {
+    // Ye line PostCSS ko disable karti hai taake woh JS files ko process na kare
+    postcss: null,
+  },
   build: {
     outDir: "dist",
     emptyOutDir: true,
+    rollupOptions: {
+      // Ye ensures karta hai ke tailwind ka JS process na ho
+      external: [],
+    },
   },
 });
