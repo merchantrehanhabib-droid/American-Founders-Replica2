@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LeadPopup from "@/components/ui/LeadPopup";
 import PageLayout from "@/components/layout/PageLayout";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
@@ -7,6 +9,7 @@ import { SERVICES } from "@/data/services";
 const categories = ["Book Writing", "Book Editing", "Publishing", "Book Marketing"];
 
 export default function ServicesPage() {
+  const [popupOpen, setPopupOpen] = useState(false);
   return (
     <PageLayout
       title="Our Services"
@@ -75,10 +78,11 @@ export default function ServicesPage() {
       <section className="py-16 bg-gold text-navy text-center">
         <h2 className="text-3xl font-serif font-bold mb-4">Not Sure Where to Start?</h2>
         <p className="text-navy/70 mb-8">Our publishing consultants will guide you to the right service for your book.</p>
-        <a href="/contact" className="inline-block bg-navy text-white font-bold px-10 py-4 rounded-md hover:bg-navy/90 transition-colors">
+        <button onClick={() => setPopupOpen(true)} className="inline-block bg-navy text-white font-bold px-10 py-4 rounded-md hover:bg-navy/90 transition-colors">
           Get a Free Consultation
-        </a>
+        </button>
       </section>
+      <LeadPopup open={popupOpen} onClose={() => setPopupOpen(false)} source="services-page" />
     </PageLayout>
   );
 }
