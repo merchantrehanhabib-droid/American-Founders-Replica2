@@ -1,7 +1,10 @@
+import { useState } from "react";
+import LeadPopup from "@/components/ui/LeadPopup";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 export default function NeedAWayOut() {
+  const [popupOpen, setPopupOpen] = useState(false);
   return (
     <section
       className="relative py-20 overflow-hidden"
@@ -29,11 +32,12 @@ export default function NeedAWayOut() {
           <p className="text-xl md:text-2xl text-navy/80 font-medium">
             Let our expert team of writers and editors help you navigate the complex world of publishing. Your masterpiece awaits.
           </p>
-          <Button size="lg" className="bg-navy hover:bg-navy/90 text-white font-bold px-10 h-16 text-lg rounded-md mt-4 shadow-xl">
+          <button onClick={() => setPopupOpen(true)} className="bg-navy hover:bg-navy/90 text-white font-bold px-10 h-16 text-lg rounded-md mt-4 shadow-xl inline-flex items-center justify-center cursor-pointer">
             Get A Free Consultation
-          </Button>
+          </button>
         </motion.div>
       </div>
+      <LeadPopup open={popupOpen} onClose={() => setPopupOpen(false)} source="need-a-way-out" />
     </section>
   );
 }

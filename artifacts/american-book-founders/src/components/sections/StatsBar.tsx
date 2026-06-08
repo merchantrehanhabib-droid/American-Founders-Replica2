@@ -14,9 +14,18 @@ export default function StatsBar() {
   const [stats, setStats] = useState<StatItem[]>(DEFAULT_STATS);
 
   useEffect(() => {
-    fetch("/api/content/stats")
+    fetch("/api/content/home")
       .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (Array.isArray(data?.value)) setStats(data.value as StatItem[]); })
+      .then((data) => {
+        if (Array.isArray(data?.value?.stats)) {
+          setStats(data.value.stats as StatItem[]);
+        } else {
+          fetch("/api/content/stats")
+            .then((r2) => (r2.ok ? r2.json() : null))
+            .then((d2) => { if (Array.isArray(d2?.value)) setStats(d2.value as StatItem[]); })
+            .catch(() => {});
+        }
+      })
       .catch(() => {});
   }, []);
 

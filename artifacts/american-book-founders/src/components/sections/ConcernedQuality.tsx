@@ -48,9 +48,11 @@ export default function ConcernedQuality() {
             </ul>
 
             <div className="pt-6">
-              <Button size="lg" className="bg-gold hover:bg-yellow-400 text-navy font-bold px-8 h-14 rounded-md">
-                Get Started
-              </Button>
+              <a href="/services/ghost-writing">
+                <Button size="lg" className="bg-gold hover:bg-yellow-400 text-navy font-bold px-8 h-14 rounded-md">
+                  Get Started
+                </Button>
+              </a>
             </div>
           </motion.div>
 

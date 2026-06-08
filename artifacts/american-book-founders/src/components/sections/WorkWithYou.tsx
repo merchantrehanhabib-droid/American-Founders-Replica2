@@ -1,3 +1,5 @@
+import { useState } from "react";
+import LeadPopup from "@/components/ui/LeadPopup";
 import { Button } from "@/components/ui/button";
 import writingDesk from "@/assets/writing-desk.png";
 import { motion } from "framer-motion";
@@ -11,6 +13,7 @@ const highlights = [
 ];
 
 export default function WorkWithYou() {
+  const [popupOpen, setPopupOpen] = useState(false);
   return (
     <section
       className="relative py-24 overflow-hidden"
@@ -52,9 +55,9 @@ export default function WorkWithYou() {
             </div>
 
             <div className="pt-4">
-              <Button size="lg" className="bg-gold hover:bg-yellow-400 text-navy font-bold px-8 h-14 rounded-md shadow-md">
+              <button onClick={() => setPopupOpen(true)} className="bg-gold hover:bg-yellow-400 text-navy font-bold px-8 h-14 rounded-md shadow-md inline-flex items-center justify-center cursor-pointer">
                 Get A Free Consultation
-              </Button>
+              </button>
             </div>
           </motion.div>
 
@@ -95,6 +98,7 @@ export default function WorkWithYou() {
           </motion.div>
         </div>
       </div>
+      <LeadPopup open={popupOpen} onClose={() => setPopupOpen(false)} source="work-with-you" />
     </section>
   );
 }

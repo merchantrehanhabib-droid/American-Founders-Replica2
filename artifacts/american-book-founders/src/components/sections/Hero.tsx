@@ -64,9 +64,19 @@ export default function Hero() {
   const [hero, setHero] = useState<HeroData>(DEFAULT_HERO);
 
   useEffect(() => {
-    fetch("/api/content/hero")
+    fetch("/api/content/home")
       .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (data?.value) setHero(data.value as HeroData); })
+      .then((data) => {
+        if (data?.value?.hero) {
+          setHero(data.value.hero as HeroData);
+        } else {
+          // fallback to old key
+          fetch("/api/content/hero")
+            .then((r2) => (r2.ok ? r2.json() : null))
+            .then((d2) => { if (d2?.value) setHero(d2.value as HeroData); })
+            .catch(() => {});
+        }
+      })
       .catch(() => {});
   }, []);
 
@@ -133,10 +143,10 @@ export default function Hero() {
                 <Phone className="w-4 h-4" />
                 {hero.phone}
               </a>
-              <button className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-400 text-navy font-bold text-sm px-7 py-4 rounded-md transition-colors">
+              <a href="/pricing" className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-yellow-400 text-navy font-bold text-sm px-7 py-4 rounded-md transition-colors">
                 <Tag className="w-4 h-4" />
                 Request Pricing Info
-              </button>
+              </a>
             </div>
 
             {/* Rating bar */}

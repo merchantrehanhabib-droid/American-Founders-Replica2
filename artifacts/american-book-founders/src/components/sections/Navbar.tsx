@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "wouter";
 import { ChevronDown, Menu, X, Phone } from "lucide-react";
+import LeadPopup from "@/components/ui/LeadPopup";
 
 type DropdownItem = { label: string; href: string };
 type NavItem = {
@@ -124,6 +125,7 @@ export default function Navbar() {
   const [open, setOpen] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const [popupOpen, setPopupOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -137,6 +139,7 @@ export default function Navbar() {
   }, []);
 
   return (
+    <>
     <nav ref={navRef} className="sticky top-0 z-50 w-full bg-white shadow-md">
       {/* ── Desktop bar ── */}
       <div className="container mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
@@ -192,12 +195,12 @@ export default function Navbar() {
             <Phone className="w-4 h-4" />
             +1 (800) 555-0199
           </a>
-          <a
-            href="#contact"
-            className="bg-gold hover:bg-yellow-400 text-navy font-bold text-sm px-5 py-3 rounded-md shadow-[0_4px_14px_0_rgba(245,197,24,0.35)] hover:-translate-y-0.5 transition-all whitespace-nowrap"
+          <button
+            onClick={() => setPopupOpen(true)}
+            className="bg-gold hover:bg-yellow-400 text-navy font-bold text-sm px-5 py-3 rounded-md shadow-[0_4px_14px_0_rgba(245,197,24,0.35)] hover:-translate-y-0.5 transition-all whitespace-nowrap cursor-pointer"
           >
             Contact With Our Expert
-          </a>
+          </button>
         </div>
 
         {/* Mobile hamburger */}
@@ -274,17 +277,17 @@ export default function Navbar() {
                 <Phone className="w-4 h-4" />
                 +1 (800) 555-0199
               </a>
-              <a
-                href="#contact"
-                onClick={() => setMobileOpen(false)}
-                className="block text-center w-full bg-gold text-navy font-bold text-sm py-3 rounded-md"
+              <button
+                onClick={() => { setMobileOpen(false); setPopupOpen(true); }}
+                className="block text-center w-full bg-gold text-navy font-bold text-sm py-3 rounded-md cursor-pointer"
               >
                 Contact With Our Expert
-              </a>
+              </button>
             </div>
           </div>
         </div>
       )}
     </nav>
-  );
+    {popupOpen && <LeadPopup open={popupOpen} onClose={() => setPopupOpen(false)} source="navbar" />}
+  </>);
 }

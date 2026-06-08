@@ -43,7 +43,18 @@ export default function Testimonials() {
   useEffect(() => {
     fetch("/api/content/testimonials")
       .then((r) => (r.ok ? r.json() : null))
-      .then((data) => { if (Array.isArray(data?.value)) setTestimonials(data.value as TestimonialItem[]); })
+      .then((data) => {
+        if (Array.isArray(data?.value?.items)) {
+          setTestimonials(data.value.items as TestimonialItem[]);
+        } else if (Array.isArray(data?.value)) {
+          setTestimonials(data.value as TestimonialItem[]);
+        } else {
+          fetch("/api/content/testimonials")
+            .then((r2) => (r2.ok ? r2.json() : null))
+            .then((d2) => { if (Array.isArray(d2?.value)) setTestimonials(d2.value as TestimonialItem[]); })
+            .catch(() => {});
+        }
+      })
       .catch(() => {});
   }, []);
 

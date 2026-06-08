@@ -32,9 +32,11 @@ export default function YellowBanner() {
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-navy leading-tight">
               Ready to Become a Book Icon in 1st
             </h2>
-            <Button size="lg" className="bg-navy hover:bg-navy/90 text-white font-bold px-8 h-14 rounded-md shadow-lg">
-              Get Started
-            </Button>
+            <a href="/pricing">
+              <Button size="lg" className="bg-navy hover:bg-navy/90 text-white font-bold px-8 h-14 rounded-md shadow-lg">
+                Get Started
+              </Button>
+            </a>
           </motion.div>
 
           <div className="relative h-48 lg:h-64 flex items-center justify-end -mr-20 lg:-mr-0">

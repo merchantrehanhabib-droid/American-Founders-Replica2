@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const genres = [
   {
-    name: "Horror",
+    name: "real state",
     tagline: "Books that keep you up at night",
     covers: ["/genre-horror-1.png", "/genre-horror-2.png"],
     color: "from-red-900/80 to-black/90",
